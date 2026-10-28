@@ -1,0 +1,47 @@
+from collections import deque
+def bfs(graph,start):
+  visited=set()
+  queue=deque([start])
+  visited.add(start)
+  print("BFS TRAVERSAL:",end="")
+
+  while queue:
+    vertex=queue.popleft()
+    print(vertex,end=" ")
+
+    for neighbor in graph[vertex]:
+      if neighbor not in visited:
+        visited.add(neighbor)
+        queue.append(neighbor)
+
+graph={}
+
+n=int(input("ENTER THE NUMBER OF VERTICES: "))
+
+
+for i in range(n):
+
+  vertex=input(f" ENTER VERTEX{i+1}:").upper()
+  neighbors=[n.upper() for n in input(f"ENTER ADJACENT VERTICES OF {vertex}(space-separated):").split()]
+  graph[vertex]=neighbors
+start=input("ENTER THE STARTING VERTEX:").upper()
+
+
+print("\ngraph:",graph)
+bfs(graph,start)
+OUTPUT
+ENTER THE NUMBER OF VERTICES: 5
+ ENTER VERTEX1:A
+ENTER ADJACENT VERTICES OF A(space-separated):B C
+ ENTER VERTEX2:B
+ENTER ADJACENT VERTICES OF B(space-separated):D E
+ ENTER VERTEX3:C
+ENTER ADJACENT VERTICES OF C(space-separated):
+ ENTER VERTEX4:D
+ENTER ADJACENT VERTICES OF D(space-separated):
+ ENTER VERTEX5:E
+ENTER ADJACENT VERTICES OF E(space-separated):
+ENTER THE STARTING VERTEX:A
+
+graph: {'A': ['B', 'C'], 'B': ['D', 'E'], 'C': [], 'D': [], 'E': []}
+BFS TRAVERSAL:ABCDE
